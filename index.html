@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- External JavaScript library: Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div>
+        <p class="eyebrow">CSE 310 • JavaScript Project</p>
+        <h1>Personal Expense Tracker</h1>
+        <p>Manage your expenses and understand your spending.</p>
+      </div>
+      <button id="clearAllBtn" class="danger-outline">
+        Clear All
+      </button>
+    </header>
+
+    <section class="summary-grid">
+      <article class="summary-card">
+        <p>Total Expenses</p>
+        <h2 id="totalExpenses">₦0.00</h2>
+      </article>
+
+      <article class="summary-card">
+        <p>Number of Expenses</p>
+        <h2 id="expenseCount">0</h2>
+      </article>
+
+      <article class="summary-card">
+        <p>Average Expense</p>
+        <h2 id="averageExpense">₦0.00</h2>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel">
+        <h2>Add New Expense</h2>
+        <p class="muted">Enter the details below.</p>
+
+        <form id="expenseForm">
+          <label for="description">Description</label>
+          <input
+            id="description"
+            type="text"
+            placeholder="e.g. Groceries"
+            maxlength="100"
+            required
+          />
+
+          <label for="amount">Amount (NGN)</label>
+          <input
+            id="amount"
+            type="number"
+            placeholder="e.g. 5000"
+            min="0.01"
+            step="0.01"
+            required
+          />
+
+          <label for="category">Category</label>
+          <select id="category" required>
+            <option value="">Select category</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Bills">Bills</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label for="date">Date</label>
+          <input id="date" type="date" required />
+
+          <button type="submit" class="primary-btn">
+            Add Expense
+          </button>
+        </form>
+
+        <p id="formMessage" class="message" role="status"></p>
+      </article>
+
+      <article class="panel">
+        <h2>Spending Breakdown</h2>
+        <p class="muted">Expenses grouped by category.</p>
+
+        <div class="chart-wrapper">
+          <canvas id="expenseChart"></canvas>
+        </div>
+
+        <h3>Category Totals</h3>
+        <div id="categoryTotals"></div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="list-header">
+        <div>
+          <h2>Expense History</h2>
+          <p class="muted">Your recorded transactions.</p>
+        </div>
+
+        <select id="filterCategory">
+          <option value="All">All Categories</option>
+          <option value="Food">Food</option>
+          <option value="Transport">Transport</option>
+          <option value="Bills">Bills</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div id="expenseList" class="expense-list"></div>
+    </section>
+
+    <footer>
+      Built with JavaScript • CSE 310 Applied Programming
+    </footer>
+  </main>
+</body>
+</html>
